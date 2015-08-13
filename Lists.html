@@ -1,0 +1,39 @@
+<html ng-app="lists">
+	<head>
+		<title></title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+	</head>
+	<body>
+		<div ng-controller="listController">
+			<label>Name: </label>
+			<input type="text" placeholder="Type your name" ng-model="name">
+			<br>
+			<h1>Hola {{name}} {{lastname}}! </h1>
+			<button ng-click="showList()">Show Lists</button>
+
+			<ul>
+				<li ng-repeat="note in notes">{{note}}</li>
+			</ul>
+
+
+		</div>
+
+
+		<script>
+			var myApp = angular.module("lists",[])
+
+			myApp.controller ("listController", ["$scope", function($scope){
+
+				$scope.lastname = "Ibarra"
+
+				$scope.showList = function(){
+					$scope.notes = [12,45,23,56]
+				}	
+
+			}])
+
+		</script>
+	</body>
+
+</html>

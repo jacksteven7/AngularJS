@@ -1,0 +1,36 @@
+<html ng-app="filter">
+	<head>
+		<title></title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+	</head>
+	<body>
+		<div ng-controller="filterController">
+			<h1>Phonelist</h1>
+			<label >Search</label>
+			<input type="search" ng-model="search">
+			<p ng-repeat="contact in phoneList | filter: search">
+				{{contact.name }}:{{contact.phone }}
+			</p>
+
+		</div>
+
+
+		<script>
+			var myApp = angular.module("filter",[])
+
+			myApp.controller ("filterController", ["$scope", function($scope){
+				$scope.phoneList = [
+					{ name: "Jack", phone:"3102345688" },
+					{ name: "Steven", phone:"3043857942" },
+					{ name: "Karol", phone:"3207463939" },
+					{ name: "Ana", phone:"31593856292" },
+					{ name: "Santiago", phone:"3008745528" },
+				]
+
+			}])
+
+		</script>
+	</body>
+
+</html>

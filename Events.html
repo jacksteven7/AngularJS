@@ -1,0 +1,44 @@
+<html ng-app="event">
+	<head>
+		<title></title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+	</head>
+	<body>
+		<div ng-controller="eventController">
+			<button ng-click="simpleClick()">Click</button>
+			<button ng-dblclick="doubleClick()">Double Click</button>
+			<br>
+			<img src="DSC_4786.JPG" alt="" widht="500" height="350" ng-mouseleave="mouseLiveImage()" ng-mouseenter="mouseUnderImage()">
+
+			<h1> {{ event }} </h1>
+
+		</div>
+
+
+		<script>
+			var myApp = angular.module("event",[])
+
+			myApp.controller ("eventController", ["$scope", function($scope){
+
+				$scope.simpleClick = function(){
+					$scope.event = "click"
+				}
+				$scope.doubleClick = function(){
+					$scope.event = "double"
+				}
+
+				$scope.mouseLiveImage = function(){
+					$scope.event = "mouse Live Image"
+				}
+
+				$scope.mouseUnderImage = function(){
+					$scope.event = "mouse Under Image"
+				}
+
+			}])
+
+		</script>
+	</body>
+
+</html>
