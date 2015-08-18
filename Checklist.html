@@ -1,0 +1,64 @@
+<html ng-app="filter">
+	<head>
+		<title></title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="checklist.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+	</head>
+	<body>
+		<div ng-controller="checkListController" class="col-sm-8">
+			<h1>CheckList</h1>
+			
+			<input type="text" ng-model="newTaskName" class="form-control" placeholder="New Task" width="50%">
+			<br>
+			<button class="btn btn-primary" ng-click="addTasks()">Add Task</button>
+			<br>
+			<br>
+			<span>{{doneTasks()}} of {{list.length}}</span>
+			<ul  class="list-group">
+				<li class="list-group-item" ng-repeat="item in list" >
+					<input type="checkbox" ng-model="item.state"> 
+					<span class="hecho-{{item.state}}">{{item.name}}</span>
+				</li>
+			</ul>
+			<button class="btn btn-primary" ng-click="clenDoneTasks()">Cleak Done Tasks</button>
+		</div>
+
+		<script>
+			var myApp = angular.module("filter",[])
+
+			myApp.controller ("checkListController", ["$scope", function($scope){
+
+					$scope.list = [
+									{name: "Play Soccer", state: true},
+									{name: "Eat Before Drink", state: false},
+									{name: "Drink", state: false},
+									{name: "Dance", state: true}
+								  ]
+
+					$scope.addTasks = function(){
+						$scope.list.push({name: $scope.newTaskName, state: false})
+						$scope.newTaskName = ""
+					}
+
+					$scope.doneTasks = function(){
+						var doneTasks = 0
+						angular.forEach($scope.list,function(item){
+							doneTasks += item.state ? 1 : 0;
+						});
+						return doneTasks;
+					}
+
+					$scope.clenDoneTasks = function(){
+						var tempList = [];
+						angular.forEach($scope.list,function(item){
+							if(!item.state) tempList.push(item)
+						});
+						$scope.list = tempList;
+					}				
+
+			}])
+		</script>
+	</body>
+
+</html>
